@@ -1,0 +1,57 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color:black;
+  color: white;
+}
+
+.navbar-left {
+  text-align:left;
+  margin-left:40px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-item {
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+
+.search-container {
+  display: flex;
+}
+
+
+
+.search-container button {
+  padding: 5px 10px;
+  background-color: grey;
+  color: white;
+  border: none;
+  margin-left:10px;
+}
+
+
+.App {
+  text-align: center;
+}
+
+.movies-container {
+  text-align: center; 
+}
+
+.movie {
+  display: inline-block; 
+  margin: 20px;
+}
+
+.movie img {
+  width: 200px;
+  height: 400px;
+}
