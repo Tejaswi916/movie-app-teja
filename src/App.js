@@ -14,13 +14,15 @@ class App extends Component {
     this.fetchMovies('popular');
   }
 
-  fetchMovies = async (category) => {
+  fetchMovies = async (category, searchQuery = '') => {
     try {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${category}?api_key=7a0c310ae3d3f5934c7909bd29911d51`
-      );
+      const url = searchQuery
+        ? `https://api.themoviedb.org/3/search/movie?api_key=7a0c310ae3d3f5934c7909bd29911d51&query=${searchQuery}`
+        : `https://api.themoviedb.org/3/movie/${category}?api_key=7a0c310ae3d3f5934c7909bd29911d51`;
+        
+      const response = await fetch(url);
       const data = await response.json();
-      this.setState({ movies: data.results});
+      this.setState({ movies: data.results });
     } catch (err) {
       console.log(err);
     }
@@ -32,6 +34,10 @@ class App extends Component {
 
   SearchMovie = (event) => {
     this.setState({ searchItem: event.target.value });
+  };
+
+  handleSearch = () => {
+    this.fetchMovies('', this.state.searchItem);
   };
 
   render() {
@@ -54,7 +60,7 @@ class App extends Component {
                 value={searchItem}
                 onChange={this.SearchMovie}
               />
-              <button>Search</button>
+              <button onClick={this.handleSearch}>Search</button>
             </div>
           </div>
         </nav>
@@ -65,7 +71,7 @@ class App extends Component {
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                 alt={movie.title}
               />
-              
+              <p>{movie.title}</p>
             </div>
           ))}
         </div>
